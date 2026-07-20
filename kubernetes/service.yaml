@@ -1,1 +1,22 @@
-# Kubernetes Service manifest goes here.
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: primalabs-app
+  namespace: primalabs
+  labels:
+    app.kubernetes.io/name: primalabs-app
+    app.kubernetes.io/instance: primalabs
+    app.kubernetes.io/component: api
+
+spec:
+  type: ClusterIP
+
+  selector:
+    app.kubernetes.io/name: primalabs-app
+
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+      protocol: TCP
