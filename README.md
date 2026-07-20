@@ -6,6 +6,9 @@ The objective of this project was to build a production-oriented local DevOps pl
 
 The implementation focuses on reproducibility, automation, security, and operational best practices while remaining completely local, without relying on any public cloud infrastructure.
 
+<img width="1920" height="1080" alt="Screenshot 2026-07-21 at 4 48 20 AM" src="https://github.com/user-attachments/assets/df5fba6d-bda6-4dd9-af15-4c57331983ee" />
+
+
 ### Project Goals
 
 The project was designed to achieve the following objectives:
