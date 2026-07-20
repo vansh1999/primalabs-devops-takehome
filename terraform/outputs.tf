@@ -1,1 +1,3 @@
-# Output value declarations go here.
+output "namespace" {
+  value = var.namespace
+}
