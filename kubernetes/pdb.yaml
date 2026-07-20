@@ -1,1 +1,18 @@
-# Kubernetes PodDisruptionBudget manifest goes here.
+# PodDisruptionBudget -> min pod to be available all time
+
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+
+metadata:
+  name: primalabs-app
+  namespace: primalabs
+
+spec:
+  minAvailable: 1
+
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: primalabs-app
+
+# why PDB ?
+# PDB ensures that voluntary operations such as node draining or cluster upgrades don’t evict all application pods at once. Since the Deployment runs two replicas, minAvailable: 1 guarantees that at least one instance remains available throughout the operation.

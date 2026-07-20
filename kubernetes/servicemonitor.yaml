@@ -1,1 +1,30 @@
-# Prometheus Operator ServiceMonitor manifest goes here.
+# Prometheus Operator ServiceMonitor 
+
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+
+metadata:
+  name: primalabs-app
+  namespace: primalabs
+  labels:
+    release: kube-prometheus-stack
+
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: primalabs-app
+
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 30s
+
+  namespaceSelector:
+    matchNames:
+      - primalabs
+
+
+# why ServiceMonitor - fastapi application exposes /metrics. but prom does not auto. discovers the app. someone has to tell prom. to scrape this service every 30 seconds.
+# Flow: FastAPI -> servive -> ServiceMonitor -> Prometheus Operator -> Prometheus
+# we installed kube-prometheus-stack, we also installed Prometheus Operator, which watches for ServiceMonitor resources. [via TERRAFORM] !!!
